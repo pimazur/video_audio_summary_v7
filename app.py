@@ -96,7 +96,6 @@ def calculate_transcription_cost(audio_path):
     audio = AudioSegment.from_file(audio_path)
 
     duration_in_minutes = len(audio) / 1000 / 60
-    print(duration_in_minutes)
     cost = duration_in_minutes * model_pricings["whisper-1"]["minutes"]
     
     return cost
@@ -231,6 +230,8 @@ if uploaded_file:
             else:
                 wait_writing_displayed = wait_writing()
 
+                save_file(files_names["uploaded_file_path"], uploaded_file)
+
                 transcription = my_text_area(
                     f"Transkrybcja {media_type}",
                     transcribe_audio_to_text(files_names["uploaded_file_path"])
@@ -241,7 +242,6 @@ if uploaded_file:
                 wait_writing_displayed.empty()
 
                 my_download_button(transcription, files_names["transcription_file_name"])
-                save_file(files_names["uploaded_file_path"], uploaded_file)
                 save_file(files_names["transcription_file_path"], transcription)
 
 # SUMMARY
@@ -286,6 +286,8 @@ if uploaded_file:
             else:
                 wait_writing_displayed = wait_writing()
 
+                save_file(files_names["uploaded_file_path"], uploaded_file)
+
                 transcription = transcribe_audio_to_text(files_names["uploaded_file_path"])
                 summary_and_tokens = summarize_text(transcription)
 
@@ -309,7 +311,6 @@ if uploaded_file:
                 wait_writing_displayed.empty()
 
                 my_download_button(summary, files_names["summary_file_name"])
-                save_file(files_names["uploaded_file_path"], uploaded_file)
                 save_file(files_names["transcription_file_path"], transcription)
                 save_file(files_names["summary_file_path"], summary)
 
