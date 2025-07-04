@@ -9,11 +9,6 @@ import requests
 
 env = dotenv_values(".env")
 
-if 'QDRANT_URL' in st.secrets:
-    env['QDRANT_URL'] = st.secrets['QDRANT_URL']
-if 'QDRANT_API_KEY' in st.secrets:
-    env['QDRANT_API_KEY'] = st.secrets['QDRANT_API_KEY']
-
 AUDIO_TRANSCRIBE_MODEL = "whisper-1"
 
 SUMMARY_MODEL = "gpt-4o-mini"
